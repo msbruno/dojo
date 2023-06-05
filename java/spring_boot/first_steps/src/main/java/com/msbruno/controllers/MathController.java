@@ -1,12 +1,10 @@
 package com.msbruno.controllers;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.msbruno.controllers.exceptions.UnsupportedMathOperationException;
 import com.msbruno.entities.Calculator;
 
 @RestController
@@ -22,14 +20,10 @@ public class MathController {
 			@PathVariable(name = "param1") String param1,
 			@PathVariable(name = "param2") String param2) {
 		
-		param1 = treatParameter(param1);
-		param2 = treatParameter(param2);
+		Double number1 = converter.convert(param1);
+		Double number2 = converter.convert(param2);
 		
-		if (!AreNumeric(param1, param2)) {
-			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
-		}
-		
-		return calc.sum(Double.valueOf(param1), Double.valueOf(param2));
+		return calc.sum(number1, number2);
 	}
 	
 	@RequestMapping(
@@ -39,14 +33,10 @@ public class MathController {
 			@PathVariable(name = "param1") String param1,
 			@PathVariable(name = "param2") String param2) {
 		
-		param1 = treatParameter(param1);
-		param2 = treatParameter(param2);
+		Double number1 = converter.convert(param1);
+		Double number2 = converter.convert(param2);
 		
-		if (!AreNumeric(param1, param2)) {
-			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
-		}
-		
-		return  calc.division(Double.valueOf(param1), Double.valueOf(param2));
+		return  calc.division(number1, number2);
 	}
 	
 	@RequestMapping(
@@ -56,14 +46,10 @@ public class MathController {
 			@PathVariable(name = "param1") String param1,
 			@PathVariable(name = "param2") String param2) {
 		
-		param1 = treatParameter(param1);
-		param2 = treatParameter(param2);
+		Double number1 = converter.convert(param1);
+		Double number2 = converter.convert(param2);
 		
-		if (!AreNumeric(param1, param2)) {
-			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
-		}
-		
-		return calc.subtract(Double.valueOf(param1) , Double.valueOf(param2));
+		return calc.subtract(number1 , number2);
 	}
 	
 	@RequestMapping(
@@ -74,38 +60,17 @@ public class MathController {
 			@PathVariable(name="param1") String param1,
 			@PathVariable(name="param2") String param2
 			) {
-		param1 = treatParameter(param1);
-		param2 = treatParameter(param2);
-		
-		if (!AreNumeric(param1, param2)) {
-			throw new UnsupportedMathOperationException("Please set a valid number to the parameters.");
-		}
-		return calc.multiplication(Double.valueOf(param1), Double.valueOf(param2));
+		Double number1 = converter.convert(param1);
+		Double number2 = converter.convert(param2);
+		return calc.multiplication(number1, number2);
 	}
 	
 	@RequestMapping(
-			value = "squaredroot/{number}",
+			value = "squaredroot/{param}",
 			method = RequestMethod.GET
 			)
-	public Double squaredRoot(@PathVariable(name="number") String number) {
-		number = treatParameter(number);
-		
-		if (!AreNumeric(number)) {
-			throw new UnsupportedMathOperationException("Please set a valid number to the parameters.");
-		}
-		return Math.sqrt(Double.valueOf(number));
-	}
-
-	private String treatParameter(String strNumber) {
-		return strNumber.replace(',', '.');
-	}
-
-	private boolean AreNumeric(String... paramList) {
-		for (String param : paramList) {
-			if (!StringUtils.isNumeric(param)){
-				return false;
-			}
-		}
-		return true;
+	public Double squaredRoot(@PathVariable(name="param") String param) {
+		Double number = converter.convert(param);
+		return calc.squaredRoot(number);
 	}
 }

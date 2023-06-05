@@ -17,5 +17,8 @@ public class Calculator {
 	public Double division(Double number1, Double number2) {
 		return number1 / number2;
 	}
-
+	
+	public Double squaredRoot(Double number) {
+		return Math.sqrt(number);
+	}
 }
