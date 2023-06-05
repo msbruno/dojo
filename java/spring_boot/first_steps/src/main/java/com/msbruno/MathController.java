@@ -27,6 +27,23 @@ public class MathController {
 		
 		return Double.valueOf(param1) + Double.valueOf(param2);
 	}
+	
+	@RequestMapping(
+			value = "/div/{param1}/{param2}",
+			method=RequestMethod.GET)
+	public Double div(
+			@PathVariable(name = "param1") String param1,
+			@PathVariable(name = "param2") String param2) {
+		
+		param1 = treatParameter(param1);
+		param2 = treatParameter(param2);
+		
+		if (!AreNumeric(param1, param2)) {
+			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
+		}
+		
+		return Double.valueOf(param1) / Double.valueOf(param2);
+	}
 
 	private String treatParameter(String strNumber) {
 		return strNumber.replace(',', '.');
