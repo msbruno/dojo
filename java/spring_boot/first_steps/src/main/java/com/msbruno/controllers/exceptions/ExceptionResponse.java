@@ -1,4 +1,4 @@
-package com.msbruno.exceptions;
+package com.msbruno.controllers.exceptions;
 
 import java.io.Serializable;
 import java.util.Date;

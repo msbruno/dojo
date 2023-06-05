@@ -1,4 +1,4 @@
-package com.msbruno;
+package com.msbruno.controllers;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,10 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.msbruno.exceptions.UnsupportedMathOperationException;
+import com.msbruno.controllers.exceptions.UnsupportedMathOperationException;
+import com.msbruno.entities.Calculator;
 
 @RestController
 public class MathController {
+	
+	Calculator calc = new Calculator();
+	NumberConverter converter = new NumberConverter();
 
 	@RequestMapping(
 			value = "/sum/{param1}/{param2}",
@@ -25,7 +29,7 @@ public class MathController {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
 		
-		return Double.valueOf(param1) + Double.valueOf(param2);
+		return calc.sum(Double.valueOf(param1), Double.valueOf(param2));
 	}
 	
 	@RequestMapping(
@@ -42,7 +46,7 @@ public class MathController {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
 		
-		return Double.valueOf(param1) / Double.valueOf(param2);
+		return  calc.division(Double.valueOf(param1), Double.valueOf(param2));
 	}
 	
 	@RequestMapping(
@@ -59,7 +63,7 @@ public class MathController {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
 		
-		return Double.valueOf(param1) - Double.valueOf(param2);
+		return calc.subtract(Double.valueOf(param1) , Double.valueOf(param2));
 	}
 	
 	@RequestMapping(
@@ -76,7 +80,7 @@ public class MathController {
 		if (!AreNumeric(param1, param2)) {
 			throw new UnsupportedMathOperationException("Please set a valid number to the parameters.");
 		}
-		return Double.valueOf(param1) * Double.valueOf(param2);
+		return calc.multiplication(Double.valueOf(param1), Double.valueOf(param2));
 	}
 	
 	@RequestMapping(

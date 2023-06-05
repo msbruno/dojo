@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.msbruno.exceptions.ExceptionResponse;
-import com.msbruno.exceptions.UnsupportedMathOperationException;
+import com.msbruno.controllers.exceptions.ExceptionResponse;
+import com.msbruno.controllers.exceptions.UnsupportedMathOperationException;
 
 @ControllerAdvice
 @RestController
