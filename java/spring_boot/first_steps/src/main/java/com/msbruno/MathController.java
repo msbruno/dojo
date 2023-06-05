@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.msbruno.exceptions.UnsupportedMathOperationException;
+
 @RestController
 public class MathController {
 
@@ -20,7 +22,7 @@ public class MathController {
 		param2 = treatParameter(param2);
 		
 		if (!AreNumeric(param1, param2)) {
-			return Double.MAX_VALUE;
+			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
 		
 		return Double.valueOf(param1) + Double.valueOf(param2);
