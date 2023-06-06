@@ -1,5 +1,7 @@
 package com.msbruno.usecases;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
@@ -17,5 +19,13 @@ public class FindPersonUseCase {
 		return new Person(1l, "eu", "sobrenome", "123123");
 	}
 	
-	
+	public List<Person> findAll() {
+		var result = new ArrayList<Person>();
+		
+		for (int i = 0; i < 6; i++) {
+			var id = i +1l;
+			result.add(new Person(id, "Person +" +i, " Surname", "123123"));
+		}
+		return result;
+	}
 }

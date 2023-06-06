@@ -15,4 +15,5 @@
 + **11** - 3718da4 - **Modify packages names**
 + **12** - f110bda - **Create number converter**
 + **13** - 9419288 - **Separation of concerns**
-+ **13** - 44f97b8 - **Add FindPersonUseCase**
++ **13** - 44f97b8 - **Add FindPersonUseCase and add find Person method**
++ **14** - 95bd2ff - **Add findAll use case and mapping**

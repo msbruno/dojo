@@ -1,6 +1,9 @@
 package com.msbruno.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +22,9 @@ public class PersonController {
 	private NumberConverter numberConverter = new NumberConverter();
 	
 	@RequestMapping(value  = "/{id}",
-			method = RequestMethod.GET)
-	public Person getPerson(@PathVariable(name = "id") String id) {
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public Person find(@PathVariable(name = "id") String id) {
 		
 		if (!numberConverter.isNumeric(id)) {
 			String msg = String.format("O id '%s' não é um formato numérico válido", id);
@@ -28,5 +32,12 @@ public class PersonController {
 		}
 		
 		return findPersonService.find(numberConverter.convertToLong(id));
+	}
+	
+	@RequestMapping(value="/all",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Person> findAll(){
+		return findPersonService.findAll();
 	}
 }
