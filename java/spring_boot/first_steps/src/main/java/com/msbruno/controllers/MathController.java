@@ -24,8 +24,8 @@ public class MathController {
 		if (!converter.isNumeric(param1) && !converter.isNumeric(param2)) {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
-		Double number1 = converter.convert(param1);
-		Double number2 = converter.convert(param2);
+		Double number1 = converter.convertToDouble(param1);
+		Double number2 = converter.convertToDouble(param2);
 		
 		return calc.sum(number1, number2);
 	}
@@ -40,8 +40,8 @@ public class MathController {
 		if (!converter.isNumeric(param1) && !converter.isNumeric(param2)) {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
-		Double number1 = converter.convert(param1);
-		Double number2 = converter.convert(param2);
+		Double number1 = converter.convertToDouble(param1);
+		Double number2 = converter.convertToDouble(param2);
 		
 		return  calc.division(number1, number2);
 	}
@@ -56,8 +56,8 @@ public class MathController {
 		if (!converter.isNumeric(param1) && !converter.isNumeric(param2)) {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
-		Double number1 = converter.convert(param1);
-		Double number2 = converter.convert(param2);
+		Double number1 = converter.convertToDouble(param1);
+		Double number2 = converter.convertToDouble(param2);
 		
 		return calc.subtract(number1 , number2);
 	}
@@ -74,8 +74,8 @@ public class MathController {
 		if (!converter.isNumeric(param1) && !converter.isNumeric(param2)) {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
-		Double number1 = converter.convert(param1);
-		Double number2 = converter.convert(param2);
+		Double number1 = converter.convertToDouble(param1);
+		Double number2 = converter.convertToDouble(param2);
 		return calc.multiplication(number1, number2);
 	}
 	
@@ -88,7 +88,7 @@ public class MathController {
 		if (!converter.isNumeric(param)) {
 			throw new UnsupportedMathOperationException("Please, set a numeric value as param.");
 		}
-		Double number = converter.convert(param);
+		Double number = converter.convertToDouble(param);
 		return calc.squaredRoot(number);
 	}
 }
