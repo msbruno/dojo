@@ -34,7 +34,7 @@ public class PersonController {
 		return findPersonService.find(numberConverter.convertToLong(id));
 	}
 	
-	@RequestMapping(value="/all",
+	@RequestMapping(
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> findAll(){
