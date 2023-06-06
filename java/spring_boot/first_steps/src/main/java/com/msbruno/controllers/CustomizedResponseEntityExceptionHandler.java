@@ -1,4 +1,4 @@
-package com.msbruno;
+package com.msbruno.controllers;
 
 import java.util.Date;
 
