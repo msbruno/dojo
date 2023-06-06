@@ -28,4 +28,8 @@ public class FindPersonUseCase {
 		}
 		return result;
 	}
+
+	public Person create(Person person) {
+		return person;
+	}
 }
