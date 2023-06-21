@@ -1,13 +1,15 @@
 package com.msbruno.usecases;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.msbruno.controllers.exceptions.ResourceNotFoundException;
 import com.msbruno.entities.Person;
+import com.msbruno.entities.PersonRepository;
 
 @Service
 public class FindPersonUseCase {
@@ -15,21 +17,18 @@ public class FindPersonUseCase {
 	public final AtomicLong counter = new AtomicLong();
 	public final Logger logger = Logger.getLogger(FindPersonUseCase.class.getName());
 	
+	@Autowired
+	private PersonRepository personRepository;
+	
 	public Person find(Long id) {
-		return new Person(1l, "eu", "sobrenome", "123123");
+		return this.personRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("id Não encontrado"));
 	}
 	
 	public List<Person> findAll() {
-		var result = new ArrayList<Person>();
-		
-		for (int i = 0; i < 6; i++) {
-			var id = i +1l;
-			result.add(new Person(id, "Person +" +i, " Surname", "123123"));
-		}
-		return result;
+		return personRepository.findAll();
 	}
 
 	public Person create(Person person) {
-		return person;
+		return personRepository.save(person);
 	}
 }
