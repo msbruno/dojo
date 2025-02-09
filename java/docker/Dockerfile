@@ -1,8 +1,11 @@
-FROM openjdk:17-jdk-slim
-RUN mkdir /app
+# Build gradle
+FROM gradle:jdk17 AS build
 WORKDIR /app
-COPY . /app
-RUN ls
-RUN javac App.java
-ENTRYPOINT [ "java", "com.exemplo.App" ]
+COPY . .
+RUN gradle build
 
+# Create jar 
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/build/libs/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
