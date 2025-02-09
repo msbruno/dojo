@@ -1,6 +1,6 @@
 # Docker + Java
 
-## Commit *59a8169*
+## Commit *6a10877*
 - Main-Class: 'com.example.App'
 
 ```
