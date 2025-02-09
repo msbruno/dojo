@@ -1,7 +1,7 @@
 # Docker + Java
 
-## Commit *51d02b0*
-- Main-Class: 'com.exemplo.App'
+## Commit *59a8169*
+- Main-Class: 'com.example.App'
 
 ```
 //build image 
