@@ -1,0 +1,6 @@
+
+services:
+    myapp:
+        build: "./"
+        ports:
+            - 8001:8001
