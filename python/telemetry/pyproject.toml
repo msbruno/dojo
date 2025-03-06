@@ -1,12 +1,13 @@
 [tool.poetry]
 name = "myserver"
 version = "0.1.0"
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.110.0"
 uvicorn = {extras = ["standard"], version = "^0.28.0"}
+websockets = "12.0"
+opentelemetry-sdk = "^1.30.0"
 
 [build-system]
 requires = ["poetry-core"]
