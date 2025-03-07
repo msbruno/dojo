@@ -1,5 +1,18 @@
 
 services:
+    jaeger:
+        image: jaegertracing/all-in-one:latest
+        ports:
+            - "16686:16686"
+            - "4317:4317"
+            - "4318:4318"
+        environment:
+            - COLLECTOR_OTLP_ENABLED=true
+            - OTEL_EXPORTER_OTLP_INSECURE=true
+            - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
+            - OTEL_METRICS_EXPORTER=otlp
+            - OTEL_SERVICE_NAME=my.little.app
+            - OTEL_METRIC_EXPORT_INTERVAL=1000
 
     myserver:
         build: "./"
@@ -14,3 +27,5 @@ services:
             - 80:80
         depends_on:
             - myserver
+    
+    

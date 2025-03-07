@@ -23,5 +23,5 @@ def get_homepage():
         counter.add(1)
         return {
                 "status":"ok",
-                "foo":"bar"
+                "msg":"test"
                 }
