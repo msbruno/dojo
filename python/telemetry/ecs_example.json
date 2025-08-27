@@ -1,0 +1,20 @@
+{
+  "@timestamp": "2025-08-27T19:51:36.301Z",
+  "log.level": "debug",
+  "message": "Example message!",
+  "ecs.version": "1.6.0",
+  "http": { "request": { "method": "get" } },
+  "log": {
+    "logger": "app",
+    "origin": {
+      "file": { "line": 34, "name": "ecs2.py" },
+      "function": "<module>"
+    },
+    "original": "Example message!"
+  },
+  "process": {
+    "name": "MainProcess",
+    "pid": 166558,
+    "thread": { "id": 138319438794880, "name": "MainThread" }
+  }
+}
